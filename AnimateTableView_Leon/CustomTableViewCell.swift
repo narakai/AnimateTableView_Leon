@@ -16,10 +16,10 @@ class CustomTableViewCell: UITableViewCell {
         let gradientLayer = CAGradientLayer()
         let color1 = UIColor(white: 1.0, alpha: 0.4).cgColor
         let color2 = UIColor(white: 0.8, alpha: 0.3).cgColor
-        let color3 = UIColor(white: 0.5, alpha: 0.2).cgColor
-        let color4 = UIColor(white: 0.0, alpha: 0.1).cgColor
+        let color3 = UIColor(white: 0.5, alpha: 0.5).cgColor
+        let color4 = UIColor(white: 0.0, alpha: 0.05).cgColor
         gradientLayer.colors = [color1, color2, color3, color4]
-        gradientLayer.locations = [0.0, 0.04, 0.95, 0]
+        gradientLayer.locations = [0.0, 0.04, 0.95, 1]
         return gradientLayer
     }()
 
@@ -30,11 +30,11 @@ class CustomTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setGradientLayer()
+        layer.insertSublayer(gradientLayer, at: 0)
     }
 
-    private func setGradientLayer() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
         gradientLayer.frame = self.bounds
-        layer.insertSublayer(gradientLayer, at: 0)
     }
 }
